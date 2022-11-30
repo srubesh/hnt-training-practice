@@ -2,6 +2,8 @@ package com.example.practice.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,44 +15,47 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.practice.entities.User;
+import com.example.practice.entities.Users;
 import com.example.practice.service.UserService;
+import com.example.practice.utils.UserRoutings;
 
 @RestController
-@RequestMapping("api/users")
+@RequestMapping
 @CrossOrigin
 public class UserController {
 
 	@Autowired
 	private UserService service;
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-	@GetMapping()	
-	public List<User> getUsers(){
+	@GetMapping(value = UserRoutings.GET_ALL)	
+	public List<Users> getUsers(){
 		return service.getUsers();
 		//return null;
 	}
 	
-	@GetMapping("/{id}")
-	public User getUserById(@PathVariable int id) throws Exception{
+	@GetMapping(value = UserRoutings.GET_BY_ID)
+	public Users getUserById(@PathVariable int id) throws Exception{
 		return service.getUserById(id);
 //		return null;
 	}
 	
-	@PostMapping()
-	public User saveUser(@RequestBody User user){
+	@PostMapping(value = UserRoutings.SAVE_USER)
+	public Users saveUser(@RequestBody Users user){
 		return service.saveUser(user);
 //		return null;
 	}
 
-	@DeleteMapping("/{id}")
-	public User deleteUserById(@PathVariable int id) throws Exception{
+	@DeleteMapping(value = UserRoutings.DELETE_USER)
+	public Users deleteUserById(@PathVariable int id) throws Exception{
 		return service.deleteUserById(id);
 //		return null;
 	}
 	
-	@PutMapping("/{id}")
-	public User updateUser(@RequestBody User b, @PathVariable int id) throws Exception{
-		return service.updateUser(b, id);
+	@PutMapping(value = UserRoutings.UPDATE_USER)
+	public Users updateUser(@RequestBody Users u, @PathVariable int id) throws Exception{
+		return service.updateUser(u, id);
 //		return null;
 	}
 }

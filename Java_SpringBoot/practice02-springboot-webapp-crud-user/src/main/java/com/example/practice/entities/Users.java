@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class Users {
 	
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,26 +15,26 @@ public class User {
 		private String password;
 		private String emailId;
 		private int phoneNmuber;
-		private String Role;
-		private boolean isActive;
+		private String role;
+		private Character isActive;
 		
 		
 		
 		
-		public User() {
+		public Users() {
 		}
 
-		public User(String username, String password, String emailId, int phoneNmuber, String role, boolean isActive) {
+		public Users(String username, String password, String emailId, int phoneNmuber, String role, Character isActive) {
 			this.username = username;
 			this.password = password;
 			this.emailId = emailId;
 			this.phoneNmuber = phoneNmuber;
-			Role = role;
+			this.role = role;
 			this.isActive = isActive;
 		}
 
-		public User(int id, String username, String password, String emailId, int phoneNmuber, String role,
-				boolean isActive) {
+		public Users(int id, String username, String password, String emailId, int phoneNmuber, String role,
+				Character isActive) {
 			this(username, password, emailId, phoneNmuber, role, isActive);
 			this.id = id;
 		}
@@ -88,19 +88,19 @@ public class User {
 
 
 		public String getRole() {
-			return Role;
+			return role;
 		}
 
 		public void setRole(String role) {
-			Role = role;
+			this.role = role;
 		}
 
 
-		public boolean isActive() {
+		public Character isActive() {
 			return isActive;
 		}
 
-		public void setActive(boolean isActive) {
+		public void setActive(Character isActive) {
 			this.isActive = isActive;
 		}
 
@@ -108,6 +108,6 @@ public class User {
 		@Override
 		public String toString() {
 			return "User [id=" + id + ", username=" + username + ", password=" + password + ", emailId=" + emailId
-					+ ", phoneNmuber=" + phoneNmuber + ", Role=" + Role + ", isActive=" + isActive + "]";
+					+ ", phoneNmuber=" + phoneNmuber + ", Role=" + role + ", isActive=" + isActive + "]";
 		}
 }

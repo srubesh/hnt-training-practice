@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.practice.entities.User;
+import com.example.practice.entities.Users;
 import com.example.practice.repository.UserRepository;
 
 @Service
@@ -15,15 +15,15 @@ public class UserService {
 	@Autowired
 	private UserRepository repo;
 
-	public List<User> getUsers(){
+	public List<Users> getUsers(){
 		return repo.findAll();
 //		return null;
 	}
 	
 
-	public User getUserById(int id) throws Exception {
+	public Users getUserById(int id) throws Exception {
 		
-		Optional<User> optional = repo.findById(id); 
+		Optional<Users> optional = repo.findById(id); 
 		if(optional.isPresent()) {
 			return optional.get();
 		} 
@@ -35,15 +35,15 @@ public class UserService {
 	}
 	
 
-	public User saveUser(User user){
+	public Users saveUser(Users user){
 		return repo.save(user);
 //		return null;
 	}
 
 
-	public User deleteUserById(int id) throws Exception {
+	public Users deleteUserById(int id) throws Exception {
 		
-		User user = getUserById(id); 
+		Users user = getUserById(id); 
 		if(user!=null) { 
 			repo.delete(user); 
 			return user; 
@@ -56,7 +56,7 @@ public class UserService {
 	}
 	
 
-	public User updateUser(User u, int id) throws Exception{
+	public Users updateUser(Users u, int id) throws Exception{
 //		User user = getUserById(id);
 //		if(user!=null) {
 
