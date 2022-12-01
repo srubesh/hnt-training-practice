@@ -36,7 +36,8 @@ public class UserService {
 	
 
 	public Users saveUser(Users user){
-		return repo.save(user);
+		Users localUser = repo.save(user);
+		return localUser;
 //		return null;
 	}
 

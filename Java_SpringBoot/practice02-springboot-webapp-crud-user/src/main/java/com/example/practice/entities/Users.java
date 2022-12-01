@@ -4,19 +4,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="TBL_USER")
 public class Users {
 	
 		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		@GeneratedValue(strategy = GenerationType.IDENTITY)	
 		private int id;
 		private String username;
 		private String password;
 		private String emailId;
-		private int phoneNmuber;
+		private long phoneNmuber;
 		private String role;
-		private Character isActive;
+		private boolean activeStatus;
 		
 		
 		
@@ -24,18 +26,18 @@ public class Users {
 		public Users() {
 		}
 
-		public Users(String username, String password, String emailId, int phoneNmuber, String role, Character isActive) {
+		public Users(String username, String password, String emailId, long phoneNmuber, String role, boolean activeStatus) {
 			this.username = username;
 			this.password = password;
 			this.emailId = emailId;
 			this.phoneNmuber = phoneNmuber;
 			this.role = role;
-			this.isActive = isActive;
+			this.activeStatus = activeStatus;
 		}
 
-		public Users(int id, String username, String password, String emailId, int phoneNmuber, String role,
-				Character isActive) {
-			this(username, password, emailId, phoneNmuber, role, isActive);
+		public Users(int id, String username, String password, String emailId, long phoneNmuber, String role,
+				boolean activeStatus) {
+			this(username, password, emailId, phoneNmuber, role, activeStatus);
 			this.id = id;
 		}
 		
@@ -78,11 +80,11 @@ public class Users {
 		}
 
 
-		public int getPhoneNmuber() {
+		public long getPhoneNmuber() {
 			return phoneNmuber;
 		}
 
-		public void setPhoneNmuber(int phoneNmuber) {
+		public void setPhoneNmuber(long phoneNmuber) {
 			this.phoneNmuber = phoneNmuber;
 		}
 
@@ -96,18 +98,17 @@ public class Users {
 		}
 
 
-		public Character isActive() {
-			return isActive;
+		public boolean isActiveStatus() {
+			return activeStatus;
 		}
 
-		public void setActive(Character isActive) {
-			this.isActive = isActive;
+		public void setActiveStatus(boolean activeStatus) {
+			this.activeStatus = activeStatus;
 		}
-
 
 		@Override
 		public String toString() {
 			return "User [id=" + id + ", username=" + username + ", password=" + password + ", emailId=" + emailId
-					+ ", phoneNmuber=" + phoneNmuber + ", Role=" + role + ", isActive=" + isActive + "]";
+					+ ", phoneNmuber=" + phoneNmuber + ", Role=" + role + ", isActive=" + activeStatus + "]";
 		}
 }
